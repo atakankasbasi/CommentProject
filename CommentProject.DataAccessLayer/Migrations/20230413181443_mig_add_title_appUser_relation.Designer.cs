@@ -4,6 +4,7 @@ using CommentProject.DataAccessLayer.Concrete;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CommentProject.DataAccessLayer.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20230413181443_mig_add_title_appUser_relation")]
+    partial class mig_add_title_appUser_relation
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -160,9 +162,6 @@ namespace CommentProject.DataAccessLayer.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CommentID"), 1L, 1);
 
-                    b.Property<int?>("AppUserID")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("CommentDate")
                         .HasColumnType("datetime2");
 
@@ -177,8 +176,6 @@ namespace CommentProject.DataAccessLayer.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("CommentID");
-
-                    b.HasIndex("AppUserID");
 
                     b.HasIndex("TitleID");
 
@@ -317,17 +314,11 @@ namespace CommentProject.DataAccessLayer.Migrations
 
             modelBuilder.Entity("CommentProject.EntityLayer.Concrete.Comment", b =>
                 {
-                    b.HasOne("CommentProject.EntityLayer.Concrete.AppUser", "AppUser")
-                        .WithMany("Comments")
-                        .HasForeignKey("AppUserID");
-
                     b.HasOne("CommentProject.EntityLayer.Concrete.Title", "Title")
                         .WithMany("Comments")
                         .HasForeignKey("TitleID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("AppUser");
 
                     b.Navigation("Title");
                 });
@@ -404,8 +395,6 @@ namespace CommentProject.DataAccessLayer.Migrations
 
             modelBuilder.Entity("CommentProject.EntityLayer.Concrete.AppUser", b =>
                 {
-                    b.Navigation("Comments");
-
                     b.Navigation("Titles");
                 });
 

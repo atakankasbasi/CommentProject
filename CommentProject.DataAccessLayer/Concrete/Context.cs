@@ -16,7 +16,7 @@ namespace CommentProject.DataAccessLayer.Concrete
             optionsBuilder.UseSqlServer("Server=(localdb)\\MSSQLLocalDB; initial catalog=DbComment; integrated security=true;");
         }
         public DbSet<Comment> Comments { get; set; }
-        public DbSet<Content> Contents { get; set; }
+        public DbSet<Title> Titles { get; set; }
         public DbSet<Category> Categories { get; set; }
     }
 }

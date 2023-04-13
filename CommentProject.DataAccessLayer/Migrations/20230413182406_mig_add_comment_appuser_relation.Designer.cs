@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CommentProject.DataAccessLayer.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20230410185019_mig1")]
-    partial class mig1
+    [Migration("20230413182406_mig_add_comment_appuser_relation")]
+    partial class mig_add_comment_appuser_relation
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -162,7 +162,7 @@ namespace CommentProject.DataAccessLayer.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CommentID"), 1L, 1);
 
-                    b.Property<int>("AppUserID")
+                    b.Property<int?>("AppUserID")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CommentDate")
@@ -175,25 +175,25 @@ namespace CommentProject.DataAccessLayer.Migrations
                     b.Property<bool>("CommentStatus")
                         .HasColumnType("bit");
 
-                    b.Property<int>("ContentID")
+                    b.Property<int>("TitleID")
                         .HasColumnType("int");
 
                     b.HasKey("CommentID");
 
                     b.HasIndex("AppUserID");
 
-                    b.HasIndex("ContentID");
+                    b.HasIndex("TitleID");
 
                     b.ToTable("Comments");
                 });
 
-            modelBuilder.Entity("CommentProject.EntityLayer.Concrete.Content", b =>
+            modelBuilder.Entity("CommentProject.EntityLayer.Concrete.Title", b =>
                 {
-                    b.Property<int>("ContentID")
+                    b.Property<int>("TitleID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ContentID"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TitleID"), 1L, 1);
 
                     b.Property<int>("AppUserID")
                         .HasColumnType("int");
@@ -201,17 +201,17 @@ namespace CommentProject.DataAccessLayer.Migrations
                     b.Property<int>("CategoryID")
                         .HasColumnType("int");
 
-                    b.Property<string>("ContentName")
+                    b.Property<string>("TitleName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("ContentID");
+                    b.HasKey("TitleID");
 
                     b.HasIndex("AppUserID");
 
                     b.HasIndex("CategoryID");
 
-                    b.ToTable("Contents");
+                    b.ToTable("Titles");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
@@ -321,31 +321,29 @@ namespace CommentProject.DataAccessLayer.Migrations
                 {
                     b.HasOne("CommentProject.EntityLayer.Concrete.AppUser", "AppUser")
                         .WithMany("Comments")
-                        .HasForeignKey("AppUserID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("AppUserID");
 
-                    b.HasOne("CommentProject.EntityLayer.Concrete.Content", "Content")
+                    b.HasOne("CommentProject.EntityLayer.Concrete.Title", "Title")
                         .WithMany("Comments")
-                        .HasForeignKey("ContentID")
+                        .HasForeignKey("TitleID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("AppUser");
 
-                    b.Navigation("Content");
+                    b.Navigation("Title");
                 });
 
-            modelBuilder.Entity("CommentProject.EntityLayer.Concrete.Content", b =>
+            modelBuilder.Entity("CommentProject.EntityLayer.Concrete.Title", b =>
                 {
                     b.HasOne("CommentProject.EntityLayer.Concrete.AppUser", "AppUser")
-                        .WithMany("Contents")
+                        .WithMany("Titles")
                         .HasForeignKey("AppUserID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("CommentProject.EntityLayer.Concrete.Category", "Category")
-                        .WithMany("Contents")
+                        .WithMany("Titles")
                         .HasForeignKey("CategoryID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -410,15 +408,15 @@ namespace CommentProject.DataAccessLayer.Migrations
                 {
                     b.Navigation("Comments");
 
-                    b.Navigation("Contents");
+                    b.Navigation("Titles");
                 });
 
             modelBuilder.Entity("CommentProject.EntityLayer.Concrete.Category", b =>
                 {
-                    b.Navigation("Contents");
+                    b.Navigation("Titles");
                 });
 
-            modelBuilder.Entity("CommentProject.EntityLayer.Concrete.Content", b =>
+            modelBuilder.Entity("CommentProject.EntityLayer.Concrete.Title", b =>
                 {
                     b.Navigation("Comments");
                 });

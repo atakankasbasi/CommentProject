@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32929.385
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommentProject", "CommentProject\CommentProject.csproj", "{1C7072E6-2C19-4D2D-A955-C83467DBD822}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommentProject", "CommentProject\CommentProject.csproj", "{1C7072E6-2C19-4D2D-A955-C83467DBD822}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommentProject.EntityLayer", "CommentProject.EntityLayer\CommentProject.EntityLayer.csproj", "{E1EB8BCF-6DDE-4F3C-BF17-223742ACC26A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommentProject.EntityLayer", "CommentProject.EntityLayer\CommentProject.EntityLayer.csproj", "{E1EB8BCF-6DDE-4F3C-BF17-223742ACC26A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommentProject.DataAccessLayer", "CommentProject.DataAccessLayer\CommentProject.DataAccessLayer.csproj", "{D9B06BFD-1294-4146-9B5D-40C252B57F8C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommentProject.DataAccessLayer", "CommentProject.DataAccessLayer\CommentProject.DataAccessLayer.csproj", "{D9B06BFD-1294-4146-9B5D-40C252B57F8C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommentProject.BusinessLayer", "CommentProject.BusinessLayer\CommentProject.BusinessLayer.csproj", "{9A7E77C8-091B-46A9-873B-27AD2F6D2D89}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{D9B06BFD-1294-4146-9B5D-40C252B57F8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D9B06BFD-1294-4146-9B5D-40C252B57F8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D9B06BFD-1294-4146-9B5D-40C252B57F8C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9A7E77C8-091B-46A9-873B-27AD2F6D2D89}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A7E77C8-091B-46A9-873B-27AD2F6D2D89}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A7E77C8-091B-46A9-873B-27AD2F6D2D89}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A7E77C8-091B-46A9-873B-27AD2F6D2D89}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
